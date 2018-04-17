@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;	
+			}
+			body,html,.main{
+				height: 100%;
+			}
+			.main{
+				position: relative;
+				margin:0 auto;
+				/*overflow: hidden;*/
+				/*text-align: center;*/
+				padding: 10px;
+				width: 100%;
+			}
+			.item{
+				width: 210px;
+				padding: 10px 5px 5px 5px;
+				float: left;
+				/*justify-content: center;*/
+				
+			}
+			.item img{
+				width: 100%;
+				height: auto;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				box-shadow: 1px 0px #ccc;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="wrapper">
+				<div class="item">
+				<img src="header/1f90eef0350b5481444ceeedca5c58d5.jpeg" />
+			</div>
+			<div class="item">
+				<img src="img2/img/207d1d00a5ec31a7622c4b4c8b66405a.jpg" />
+			</div>
+			<div class="item">
+				<img src="header/1f90eef0350b5481444ceeedca5c58d5.jpeg" />
+			</div>
+			<div class="item">
+				<img src="header/7bf02942930e841d63c95298d007503d.jpg" />
+			</div>
+			<div class="item">
+				<img src="header/9058b2ca0c88d007938ae52b7e71737b.jpeg" />
+			</div>
+			<div class="item">
+				<img src="img2/img/2af62465b64789a03c6da9b33a76416b.jpg" />
+			</div>
+			<div class="item">
+				<img src="header/259babe0fbcc2c6cf74783a4765547d1.jpeg" />
+			</div>
+			<div class="item">
+				<img src="header/4330a89e76e2bda9c78f5617bbe508eb.jpeg" />
+			</div>
+			<div class="item">
+				<img src="img/1.JPG" />
+			</div>
+			<div class="item">
+				<img src="img2/img/16a7682bc2f1f4911c38fc3bbdd0e050.jpg" />
+			</div>
+			<div class="item">
+				<img src="img2/img/501521428796_.pic.jpg" />
+			</div>
+			<div class="item">
+				<img src="header/1f90eef0350b5481444ceeedca5c58d5.jpeg" />
+			</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var screenWidth = document.documentElement.clientWidth;
+			var column = Math.floor(screenWidth / 220) ;
+			var items = document.getElementsByClassName('item');
+			document.getElementsByClassName('main')[0].style.width = column * 220 + 'px'
+			var arrayImg = new Array();
+			for(var i = 0 ; i < items.length; i++){
+				if(i < column){
+					arrayImg.push(items[i].offsetHeight);
+					console.log(items[i].scrollHeight)
+				}else{
+					console.log(items[i].scrollHeight)
+					var minHeight = Math.min.apply(null,arrayImg);
+					var minIndex = arrayImg.indexOf(minHeight);
+//					console.log(minHeight)
+					items[i].style.position = 'absolute';
+					items[i].style.top = arrayImg[minIndex] + 'px';
+					items[i].style.left = items[minIndex].offsetLeft + 'px';
+					arrayImg[minIndex] += items[i].offsetHeight; 
+					
+				}
+			}
+			setTimeout(function(){
+					console.log(document.getElementsByClassName('item')[0].offsetHeight)
+			},1000)
+
+			}
+					
+		</script>
+	</body>
+
+</html>
